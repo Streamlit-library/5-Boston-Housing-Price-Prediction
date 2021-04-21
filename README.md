@@ -1,5 +1,12 @@
 # Boston Housing Price Prediction
-1. [Importar librerías ](#schema1)
+1. [Importar librerías y cargar los datos ](#schema1)
+2. [Título ](#schema2)
+3. [Separación de los datos para predicir](#schema3)
+4. [Barra lateral](#schema4)
+5. [Panel central](#schema5)
+6. [Construir modelo y aplicarlo](#schema6)
+7. [Aplicamos el modelo.](#schema7)
+8. [Usando SHAP values](#schema8)
 
 <hr>
 
@@ -16,6 +23,10 @@ from sklearn.ensemble import RandomForestRegressor
 
 boston = datasets.load_boston()
 ~~~
+<hr>
+
+<a name="schema2"></a>
+
 # 2. Título 
 ~~~python
 st.write("""
@@ -26,6 +37,10 @@ This app predicts the **Boston House Price**!
 st.write('---')
 ~~~
 
+<hr>
+
+<a name="schema3"></a>
+
 # 3 Separación de los datos para predicir
 ~~~python
 
@@ -33,6 +48,11 @@ X = pd.DataFrame(boston.data, columns=boston.feature_names)
 
 Y = pd.DataFrame(boston.target, columns=["MEDV"])
 ~~~
+
+<hr>
+
+<a name="schema4"></a>
+
 # 4. Barra lateral
 ### Cabecera de la entrada de parámetros
 He tenido que poner delante de cada datos `float` porque me daba error streamlit que no reoconicía los valores y al ponerle que eran decimales ya funciona perfecto
@@ -76,7 +96,9 @@ Devuelve un dataframe con los datos del ususario
 df = user_input_features()
 ~~~
 
+<hr>
 
+<a name="schema5"></a>
 
 # 5. Panel central
 
@@ -85,7 +107,9 @@ st.header('Specified Input parameters')
 st.write(df)
 st.write('---')
 ~~~
+<hr>
 
+<a name="schema6"></a>
 
 # 6.Construir modelo y aplicarlo
 
@@ -107,6 +131,11 @@ model.fit(X, Y)
 
 pickle.dump(model, open('boston_model.pkl', 'wb'))
 ~~~
+
+<hr>
+
+<a name="schema7"></a>
+
 # 7. Aplicamos el modelo.
 Primero leemos el archivo y luego hacemos la predicción
 
@@ -121,6 +150,10 @@ st.header('Prediction of MEDV')
 st.write(prediction)
 st.write('---')
 ~~~
+<hr>
+
+<a name="schema8"></a>
+
 # 8. Usando SHAP values
 
 ~~~Python
